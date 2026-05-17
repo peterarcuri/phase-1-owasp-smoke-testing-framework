@@ -1,0 +1,3 @@
+target_url: "http://localhost"
+timeout: 5
+user_agent: "OWASP-Smoke-Tester"
