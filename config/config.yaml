@@ -1,3 +1,27 @@
-target_url: "http://localhost"
-timeout: 5
-user_agent: "OWASP-Smoke-Tester"
+target:
+  base_url: "http://localhost:3000"
+  test_parameter: "q"
+
+report:
+  output_file: "sample-output/security-report.json"
+
+sql_injection:
+  payloads:
+    - "' OR '1'='1"
+    - "' OR 1=1 --"
+    - "\" OR \"1\"=\"1"
+    - "'; DROP TABLE users; --"
+
+ssrf:
+  test_urls:
+    - "http://169.254.169.254/latest/meta-data/"
+    - "http://localhost:80"
+    - "http://127.0.0.1:80"
+
+headers:
+  required:
+    - "Content-Security-Policy"
+    - "Strict-Transport-Security"
+    - "X-Frame-Options"
+    - "X-Content-Type-Options"
+    - "Referrer-Policy"
