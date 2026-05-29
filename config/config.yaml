@@ -1,6 +1,9 @@
 target:
-  base_url: "http://localhost:3000"
-  test_parameter: "q"
+  base_url: "http://localhost:5000"
+
+endpoints:
+  sql_injection: "/search"
+  ssrf: "/fetch"
 
 report:
   output_file: "sample-output/security-report.json"

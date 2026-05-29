@@ -2,7 +2,10 @@ import requests
 
 
 def test_ssrf(config):
-    base_url = config["target"]["base_url"]
+    base_url = (
+    config["target"]["base_url"]
+    + config["endpoints"]["ssrf"]
+    )
     parameter = config["target"]["test_parameter"]
     test_urls = config["ssrf"]["test_urls"]
 

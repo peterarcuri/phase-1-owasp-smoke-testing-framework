@@ -13,7 +13,10 @@ DB_ERROR_SIGNATURES = [
 
 
 def test_sql_injection(config):
-    base_url = config["target"]["base_url"]
+    base_url = (
+    config["target"]["base_url"]
+    + config["endpoints"]["sql_injection"]
+    )
     parameter = config["target"]["test_parameter"]
     payloads = config["sql_injection"]["payloads"]
 
