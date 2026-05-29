@@ -5,8 +5,11 @@ from src.ssrf import test_ssrf as run_ssrf_test
 def test_ssrf_flags_possible_internal_url_processing():
     config = {
         "target": {
-            "base_url": "http://localhost:3000/fetch",
+            "base_url": "http://localhost:3000",
             "test_parameter": "url",
+        },
+        "endpoints": {
+            "ssrf": "/fetch"
         },
         "ssrf": {
             "test_urls": ["http://169.254.169.254/latest/meta-data/"]

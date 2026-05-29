@@ -5,8 +5,11 @@ from src.sql_injection import test_sql_injection as run_sql_injection_test
 def test_sql_injection_detects_database_error():
     config = {
         "target": {
-            "base_url": "http://localhost:3000/search",
+            "base_url": "http://localhost:3000",
             "test_parameter": "q",
+        },
+        "endpoints": {
+            "sql_injection": "/search"
         },
         "sql_injection": {
             "payloads": ["' OR 1=1 --"]
