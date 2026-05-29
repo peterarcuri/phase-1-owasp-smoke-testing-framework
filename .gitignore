@@ -1,9 +1,20 @@
+# Virtual Environment
 venv/
+
+# Python
 __pycache__/
-.pytest_cache/
 *.pyc
+.pytest_cache/
+
+# VS Code
+.vscode/
+
+# Generated Reports
 sample-output/security-report.json
 
+# OS Files
+.DS_Store
+Thumbs.db
 
 
 
