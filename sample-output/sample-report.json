@@ -1,42 +1,69 @@
 {
     "scan_type": "OWASP Smoke Test",
-    "generated_at": "2026-05-28T14:08:20.376637+00:00",
+    "generated_at": "2026-05-29T04:50:17.417134+00:00",
     "results": {
-        "target": "http://localhost:3000",
+        "target": "http://localhost:5000",
         "sql_injection": [
             {
                 "payload": "' OR '1'='1",
-                "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /?q=%27+OR+%271%27%3D%271 (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=3000): Failed to establish a new connection: [Errno 111] Connection refused\"))",
-                "potential_issue": false
+                "status_code": 500,
+                "potential_issue": true,
+                "description": "Possible SQL injection indicator detected"
             }
         ],
         "ssrf": [
             {
                 "test_url": "http://169.254.169.254/latest/meta-data/",
-                "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /?q=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=3000): Failed to establish a new connection: [Errno 111] Connection refused\"))",
-                "potential_issue": false
+                "status_code": 200,
+                "potential_issue": true,
+                "description": "Application may be processing external URL input"
             },
             {
                 "test_url": "http://localhost:80",
-                "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /?q=http%3A%2F%2Flocalhost%3A80 (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=3000): Failed to establish a new connection: [Errno 111] Connection refused\"))",
-                "potential_issue": false
+                "status_code": 200,
+                "potential_issue": true,
+                "description": "Application may be processing external URL input"
             },
             {
                 "test_url": "http://127.0.0.1:80",
-                "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /?q=http%3A%2F%2F127.0.0.1%3A80 (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=3000): Failed to establish a new connection: [Errno 111] Connection refused\"))",
-                "potential_issue": false
+                "status_code": 200,
+                "potential_issue": true,
+                "description": "Application may be processing external URL input"
             }
         ],
         "headers": [
             {
-                "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: / (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=3000): Failed to establish a new connection: [Errno 111] Connection refused\"))",
-                "description": "Unable to audit security headers"
+                "header": "Content-Security-Policy",
+                "present": false,
+                "description": "Missing recommended security header"
+            },
+            {
+                "header": "Strict-Transport-Security",
+                "present": false,
+                "description": "Missing recommended security header"
+            },
+            {
+                "header": "X-Frame-Options",
+                "present": false,
+                "description": "Missing recommended security header"
+            },
+            {
+                "header": "X-Content-Type-Options",
+                "present": false,
+                "description": "Missing recommended security header"
+            },
+            {
+                "header": "Referrer-Policy",
+                "present": false,
+                "description": "Missing recommended security header"
             }
         ],
         "cors": [
             {
-                "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: / (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=3000): Failed to establish a new connection: [Errno 111] Connection refused\"))",
-                "potential_issue": false
+                "access_control_allow_origin": "*",
+                "access_control_allow_credentials": "true",
+                "potential_issue": true,
+                "description": "Potential insecure CORS configuration detected"
             }
         ]
     }

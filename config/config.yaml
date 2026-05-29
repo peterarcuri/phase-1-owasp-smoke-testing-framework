@@ -1,5 +1,6 @@
 target:
   base_url: "http://localhost:5000"
+  test_parameter: "q"
 
 endpoints:
   sql_injection: "/search"
